@@ -1,11 +1,13 @@
 package com.netcracker.bagachuck.lab;
 
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Random;
 
 public class Vectors {
 
 	public static void scalarMult(int number) {
-		Vector vector=new ArrayVector(vector.getSize());
+		Vector vector=new ArrayVector();
 		for (int i = 0; i < vector.getSize(); i++) {
 			vector.setElement(vector.getElement(i) * number, i);
 		}
@@ -57,6 +59,13 @@ public class Vectors {
 			vectorRandom.setElement(r.nextDouble(), i);
 		}
 		return vectorRandom;
+	}
+	public void outputVector(Vector v, OutputStream out){
+		
+	}
+	public Vector inputVector(InputStream in){
+		///////////////////////////////
+	return null;
 	}
 
 }

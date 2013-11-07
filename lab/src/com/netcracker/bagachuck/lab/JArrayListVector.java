@@ -37,7 +37,7 @@ public class JArrayListVector implements Vector,Cloneable {
 			for (int i = 0; i < this.getSize(); i++)
 				this.setElement(mass[i], i);
 		} else {
-			System.out.println("Ошибка!Длины векторов не равны!");
+			System.out.println("Worning! length not equal!");
 		}
 	}
 

@@ -2,7 +2,7 @@ package com.netcracker.bagachuck.lab;
 
 import java.util.LinkedList;
 
-public class JLinkedListVector implements Vector,Cloneable {
+public class JLinkedListVector implements Vector, Cloneable {
 	private LinkedList<Double> list;
 
 	public JLinkedListVector(int size) {
@@ -44,7 +44,7 @@ public class JLinkedListVector implements Vector,Cloneable {
 			for (int i = 0; i < this.getSize(); i++)
 				this.setElement(mass[i], i);
 		} else {
-			System.out.println("Ошибка!Длины векторов не равны!");
+			System.out.println("Worning! length not equal!");
 		}
 	}
 
@@ -116,17 +116,17 @@ public class JLinkedListVector implements Vector,Cloneable {
 
 		return str.toString();
 	}
-	
-	public JLinkedListVector clone(){
-        JLinkedListVector vectorObject= null;
-        try {
-        	vectorObject = (JLinkedListVector) super.clone();
-        	vectorObject.list=(LinkedList<Double>)this.list.clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
 
-        return vectorObject;
-    }
+	public JLinkedListVector clone() {
+		JLinkedListVector vectorObject = null;
+		try {
+			vectorObject = (JLinkedListVector) super.clone();
+			vectorObject.list = (LinkedList<Double>) this.list.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+
+		return vectorObject;
+	}
 
 }

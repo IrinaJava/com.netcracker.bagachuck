@@ -1,10 +1,10 @@
 package com.netcracker.bagachuck.lab;
 
-import java.util.ArrayList;
+
 
 public class ArrayVector implements Vector,Cloneable {
 
-	private double vector[];
+	 private double vector[];
 
 	public ArrayVector(int size) {
 		vector = new double[size];
