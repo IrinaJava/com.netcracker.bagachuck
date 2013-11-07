@@ -131,7 +131,7 @@ public class LinkedListVector implements Vector, Cloneable {
 				}
 			}
 		}
-		System.out.println("Отсортированный массив :");
+		System.out.println("Sorting vector :");
 		for (int i = 0; i < vector.getSize(); i++) {
 			System.out.print(vector.getElement(i) + " ");
 		}
@@ -231,7 +231,7 @@ public class LinkedListVector implements Vector, Cloneable {
 		// myList.delete(0);
 		// myList.printList();
 		// myList.printList();
-		System.out.println("Длина списка: " + myList.getSize());
+		System.out.println("Length of the list: " + myList.getSize());
 		System.out.println("List: ");
 		for (int i = 0; i < myList.getSize(); i++) {
 			System.out.print("  " + myList.getElement(i));
