@@ -1,7 +1,7 @@
 package com.netcracker.bagachuck.lab;
 
-public class LinkedListVector implements Vector {
-	class Link implements Cloneable {
+public class LinkedListVector implements Vector, Cloneable {
+	class Link {
 		public double value;
 		Link next;
 		Link prev;
@@ -11,41 +11,21 @@ public class LinkedListVector implements Vector {
 
 		}
 
-		// глубокое клонирование
-		public Link clone() throws CloneNotSupportedException {
-			// Вызов Object.clone()
-			Link cloned = (Link) super.clone();
-
-			// Клонирование изменяемых полей
-			cloned.next = (Link) next.clone();
-			cloned.prev = (Link) prev.clone();
-			return cloned;
-
-		}
-
 	}
 
-	// создаем первый элемент списка(голова)
+	// head
 	private Link first;
 
-	// длина списка
 	private int size;
 
 	public int getSize() {
 		return size;
 	}
 
-	// создаем связный список
 	public LinkedListVector() {
 		first = null;
 	}
 
-	// возвращает true если список пуст
-	public boolean isEmpty() {
-		return first == null;
-	}
-
-	// Добавить в конец
 	public void add(double val) {
 		Link link = new Link(val);
 		if (first == null) {
@@ -62,7 +42,6 @@ public class LinkedListVector implements Vector {
 		}
 	}
 
-	// установить элемент по указанному индексу
 	public void setElement(double val, int index) {
 		Link link = first;
 		for (int i = 0; i < index; i++) {
@@ -71,7 +50,6 @@ public class LinkedListVector implements Vector {
 		link.value = val;
 	}
 
-	// получение элемента по индексу
 	public double getElement(int index) {
 		Link link = first;
 		for (int i = 0; i < index; i++) {
@@ -80,19 +58,14 @@ public class LinkedListVector implements Vector {
 		return link.value;
 	}
 
-	// удаление элемента по индексу
 	public void delete(int index) {
 		Link link = first;
-		// не срабатыват на 1й элемент, не входит в цикл
-
 		if (index == 0) {
-			// first.next=link.next; link.next.prev=link.next;
-			// size--;
 			first = link.next;
 			link.prev.next = link.next;
 			link.next.prev = link.prev;
 			size--;
-			
+
 		}
 
 		for (int i = 0; i < index; i++) {
@@ -103,7 +76,6 @@ public class LinkedListVector implements Vector {
 		size--;
 	}
 
-	// Удаление последнего элемента списка
 	public void delete() {
 		if (first == null) {
 			System.out.println("Список пуст!!!");
@@ -115,7 +87,6 @@ public class LinkedListVector implements Vector {
 		}
 	}
 
-	// заполнение вектора с указанного массива
 	public void createMass(double mass[]) {
 		this.first = null;
 		this.size = 0;
@@ -125,7 +96,6 @@ public class LinkedListVector implements Vector {
 		}
 	}
 
-	// сложение двух векторов
 	public void addVector(Vector otherVector) {
 		if (first == null) {
 			for (int i = 0; i < otherVector.getSize(); i++) {
@@ -141,14 +111,12 @@ public class LinkedListVector implements Vector {
 		}
 	}
 
-	// умножение указанного вектора на скаляр
 	public void scalarMult(int number) {
 		for (int i = 0; i < this.getSize(); i++) {
 			this.setElement(this.getElement(i) * number, i);
 		}
 	}
 
-	// сортировка указанного вектора
 	public static void bubbleSort(LinkedListVector vector) {
 		System.out.println("Заданный массив : ");
 		for (int i = 0; i < vector.getSize(); i++) {
@@ -231,23 +199,22 @@ public class LinkedListVector implements Vector {
 
 		}
 	}
-	
-	public LinkedListVector clone (){
-        LinkedListVector vectorObject= null;
-        try {
-        	vectorObject = (LinkedListVector) super.clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        vectorObject.size=0;
-        vectorObject.first=null;
-       
-        for (int i=0; i<this.size;i++){
-        	vectorObject.add(this.getElement(i)); }
-        return vectorObject;
-    }
 
-	
+	public LinkedListVector clone() {
+		LinkedListVector vectorObject = null;
+		try {
+			vectorObject = (LinkedListVector) super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		vectorObject.size = 0;
+		vectorObject.first = null;
+
+		for (int i = 0; i < this.size; i++) {
+			vectorObject.add(this.getElement(i));
+		}
+		return vectorObject;
+	}
 
 	public static void main(String[] args) {
 		LinkedListVector myList = new LinkedListVector();
@@ -269,8 +236,7 @@ public class LinkedListVector implements Vector {
 		for (int i = 0; i < myList.getSize(); i++) {
 			System.out.print("  " + myList.getElement(i));
 		}
-		// System.out.print("Длина списка: " + myList.getElement(0));
-		// System.out.print("Длина списка: " + myList.getSize());
+		
 	}
 
 }

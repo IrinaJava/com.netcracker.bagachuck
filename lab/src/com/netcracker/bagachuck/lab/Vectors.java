@@ -4,7 +4,8 @@ import java.util.Random;
 
 public class Vectors {
 
-	public static void scalarMult(int number, Vector vector) {
+	public static void scalarMult(int number) {
+		Vector vector=new ArrayVector(vector.getSize());
 		for (int i = 0; i < vector.getSize(); i++) {
 			vector.setElement(vector.getElement(i) * number, i);
 		}
@@ -12,13 +13,14 @@ public class Vectors {
 	}
 
 	public static Vector add(Vector v1, Vector v2) {
-		Vector v = null;
-		if (v1.getSize() != v2.getSize()) {
-			System.out.println("Ошибка! Длины не совпадают!");
-		}
+	
 		if (v1 == null || v2 == null) {
-			System.out.println("Недопустимое значение!");
+			System.err.println("Worning!not valid!");
 		}
+		if (v1.getSize() != v2.getSize()) {
+			System.err.println("Worning! length not equal!");
+		}
+		Vector v = new ArrayVector(v1.getSize());
 		for (int i = 0; i < v1.getSize(); i++) {
 			v.setElement(v1.getElement(i) + v2.getElement(i), i);
 
@@ -28,7 +30,7 @@ public class Vectors {
 	}
 
 	public static void bubbleSort(Vector vector) {
-		System.out.println("Заданный массив : ");
+		System.out.println("Vector : ");
 		for (int i = 0; i < vector.getSize(); i++) {
 			System.out.print(vector.getElement(i) + " ");
 		}
@@ -41,7 +43,7 @@ public class Vectors {
 				}
 			}
 		}
-		System.out.println("Отсортированный массив :");
+		System.out.println("Sorting vector:");
 		for (int i = 0; i < vector.getSize(); i++) {
 			System.out.print(vector.getElement(i) + " ");
 		}
