@@ -1,0 +1,65 @@
+﻿<html>
+ <head>
+    <title>Регистратура-лаборатория</title>
+	<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css"> 
+	<link href="../css/style.css" rel="stylesheet" type="text/css"> 
+	<script src="../js/date.js"></script>
+ </head>
+ <body>
+
+  <div class="row">
+  <div class="span9">
+    <center><h2>Регистратура-лаборатория</h2></center>
+		  
+<p><a href="#openModal2" class="btn">Запись в лабораторию</a></p>
+<div id="openModal2" class="modalDialog">
+    <div>
+        <a href="#closeDialog" title="Закрыть" class="closeDialog" class="calendar-cancel" onclick="calendar.hideCalendar()" >X</a>
+        <h2>Запись в лабораторию</h2>
+		<center>
+		<p>Название исследования</p>
+		 <select>
+  <option>Общий анализ крови</option>
+  <option>Общий анализ мочи</option>
+  <option>Анализ крови 1</option>
+  <option>Анализ крови 2</option>
+  <option>Анализ крови 3</option>
+</select>
+		
+		<p>Дата приема</p>
+       	<input type="text" name="date" id="date" value="XX.XX.XXXX" style ="height:21px;"/>
+		<p> <script type="text/javascript" />
+		calendar.set("date"); </script /></p>
+        <p>Время приема</p>
+		<select>
+  <option>8-00</option>
+  <option>9-00</option>
+  <option>10-00</option>
+  <option>11-00</option>
+  <option>12-00</option>
+  <option>13-00</option>
+  <option>14-00</option>
+  <option>15-00</option>
+</select>
+<p><button>Записать</button>
+</center>
+</div>
+</div>
+</body>
+</div>
+</div>
+</div>
+<div class="span3">
+	 
+
+ <style>
+   a { 
+    text-decoration: none; 
+   } 
+  </style>
+ 
+
+
+
+
+</html>

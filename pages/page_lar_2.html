@@ -1,0 +1,73 @@
+  <!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Find a patient</title>
+  <style>
+ body {
+	font: 12pt 'PT Sans',Tahoma,Arial,Times;
+	color: black;
+}
+.regform {
+	border: 1px solid black;
+	width: 530px;
+	height: 300px;
+	margin: 20px;
+	background-color: #FFFFFF;
+}
+h1 {
+	font-size: 20pt;
+	position: relative;
+	top: 1px;
+	width: 500px;
+	border-bottom: 1px solid white; 
+	padding-left: 20px;
+	overflow: hidden;
+}
+p {
+	display: inline-block;
+}
+.form {
+	padding-left: 20px;
+}
+
+.email {
+	top: 1px;
+}
+.email {
+	position: relative;
+	top: -15px;
+}
+.one-more {
+	position: relative;
+	left: 144px;
+}
+
+input[type="submit"] {
+	position: relative;
+	left:30px;
+	background: #DADAE1;
+	width:150px;
+	color: black;
+	cursor: pointer;
+	text-align: center;
+	-webkit-transition: all .5s;
+	   -moz-transition: all .5s;
+	    -ms-transition: all .5s;
+	     -o-transition: all .5s;
+	        transition: all .5s;
+}
+  
+input[type="submit"]:hover {background: #DADAE1}
+input[type="submit"]:active {background: #DADAE1}
+</style>
+<div class="regform">
+	<h1 class="title">Find a patient:</h1>
+	<div class="form">
+		<p>Enter the card number:</p><br>
+		<input type="text" class="last_name"size="45" required><input type="submit" value="search"></p><br>
+    <p>Enter patient data:</p><br>
+    <input type="text" class="first_name"size="45" required><input type="submit" value="search"></p><br>
+</div>
+	
+</html>

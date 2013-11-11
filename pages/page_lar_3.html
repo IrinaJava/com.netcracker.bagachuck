@@ -1,0 +1,89 @@
+﻿<!--style="width: 250px; padding-right:10px;"-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Личные данные</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
+  <style>
+	.my-control-label {
+		float: left;
+		width: 250px;
+		padding-top: 5px;
+		text-align: left;	
+	}
+	.my-controls {
+		margin-left: 270px;
+	}
+
+	
+  </style>
+  <body>
+  
+    <div class="container" style="margin-top: 100px;">
+		<form class="form-horizontal">
+			<div class="row">
+					<div class="span4">
+					<img src="../img/foto.png" style="width:140px; heigth:140px;">
+					<div>
+						 
+						 <select class="input-medium">
+							<option>Открыта</option>
+							<option>Закрыта</option>
+						</select>
+					</div>	
+				    <br><br>
+					<div>
+						
+						<select class="input-medium">
+							<option>Мужской</option>
+							<option>Женский</option>
+						</select>
+					</div>
+				</div>
+				<div class="span8 ">
+					<div class="control-group">
+						<label class="my-control-label" for="inputNumber" >Номер медицинской страховки</label>
+						<div class="my-controls">
+							<input type="text" id="inputNumber">
+						</div>
+					</div>	
+					<div class="control-group">
+						<label class="my-control-label" for="inputBirth">Дата рождения</label>
+						<div class="my-controls">
+							<input type="date" id="inputBirth">
+						</div>
+					</div>	
+					<div class="control-group">
+						<label class="my-control-label" for="inputFIO">Фамилия, имя, отчество</label>
+						<div class="my-controls">
+							<input type="text" id="inputFIO">
+						</div>
+					</div>	
+					<div class="control-group">
+						<label class="my-control-label" for="inputTel">Телефон</label>
+						<div class="my-controls">
+							<input type="text" id="inputTel">
+						</div>
+					</div>	
+					<div class="control-group">
+						<label class="my-control-label" for="inputAddress">Адрес</label>
+						<div class="my-controls">
+							<input type="text" id="inputAddress">
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+		<ul class="nav nav-tabs" >
+			<li class="active">
+				<a href="#">Личные данные</a>
+			</li>
+			<li><a href="page_lar_4.html">Особые показатели здоровья</a></li>
+		</ul>
+	</div >
+	
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+  </body>
+</html>
