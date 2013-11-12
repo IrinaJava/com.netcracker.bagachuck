@@ -1,20 +1,21 @@
 package com.netcracker.bagachuck.lab;
 
+import java.io.*;
 
+public class ArrayVector implements Vector, Cloneable, Serializable {
 
-public class ArrayVector implements Vector,Cloneable {
-
-	 private double vector[];
+	private double vector[];
 
 	public ArrayVector(int size) {
 		vector = new double[size];
 
 	}
-	
+
 	public ArrayVector(double... elements) {
 		vector = new double[elements.length];
 		for (int i = 0; i < elements.length; i++) {
-			this.setElement(elements[i], i);;
+			this.setElement(elements[i], i);
+			;
 		}
 	}
 
@@ -34,12 +35,10 @@ public class ArrayVector implements Vector,Cloneable {
 		}
 	}
 
-
 	public int getSize() {
 		return vector.length;
 
 	}
-
 
 	public void createMass(double mass[]) {
 		vector = new double[mass.length];
@@ -49,7 +48,6 @@ public class ArrayVector implements Vector,Cloneable {
 		}
 	}
 
-
 	public void createVector(Vector otherVector) {
 		for (int i = 0; i < otherVector.getSize(); i++) {
 			this.setElement(getElement(i), i);
@@ -57,13 +55,11 @@ public class ArrayVector implements Vector,Cloneable {
 		}
 	}
 
-
 	public void scalarMult(int number) {
 		for (int i = 0; i < vector.length; i++) {
 			vector[i] = vector[i] * number;
 		}
 	}
-
 
 	public void add(Vector otherVector) {
 		for (int i = 0; i < this.getSize(); i++) {
@@ -71,7 +67,6 @@ public class ArrayVector implements Vector,Cloneable {
 		}
 	}
 
-	
 	@Override
 	public boolean equals(Object other) {
 		if (this == other) {
@@ -135,6 +130,32 @@ public class ArrayVector implements Vector,Cloneable {
 		}
 		vectorObject.vector = this.vector.clone();
 		return vectorObject;
+	}
+
+	public static void main(String[] args) {
+		ArrayVector myVector = new ArrayVector(5);
+		
+		myVector.setElement(1.1, 0);
+		
+		try {
+			FileOutputStream fileStream = new FileOutputStream("MyVector.ser");
+			ObjectOutputStream os = new ObjectOutputStream(fileStream);
+			os.writeObject(myVector);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		try {
+			ObjectInputStream is = new ObjectInputStream(new FileInputStream(
+					"MyVector.ser"));
+			ArrayVector myVectorRestore = (ArrayVector) is.readObject();
+
+			System.out.println(myVectorRestore);
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
 	}
 
 }

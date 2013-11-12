@@ -1,8 +1,9 @@
 package com.netcracker.bagachuck.lab;
 
+import java.io.*;
 import java.util.ArrayList;
 
-public class JArrayListVector implements Vector,Cloneable {
+public class JArrayListVector implements Vector, Cloneable, Serializable {
 	private ArrayList<Double> list;
 
 	public JArrayListVector(int size) {
@@ -114,18 +115,20 @@ public class JArrayListVector implements Vector,Cloneable {
 
 		return str.toString();
 	}
+
+	public JArrayListVector clone() {
+		JArrayListVector vectorObject = null;
+		try {
+			vectorObject = (JArrayListVector) super.clone();
+			vectorObject.list = (ArrayList<Double>) this.list.clone();
+
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+
+		return vectorObject;
+	}
+
 	
-	  public JArrayListVector clone(){
-	        JArrayListVector vectorObject= null;
-	        try {
-	        	vectorObject = (JArrayListVector) super.clone();
-	        	vectorObject.list= (ArrayList<Double>) this.list.clone();
-
-	        } catch (CloneNotSupportedException e) {
-	            e.printStackTrace();
-	        }
-
-	        return vectorObject;
-	    }
 
 }

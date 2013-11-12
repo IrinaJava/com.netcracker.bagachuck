@@ -1,6 +1,8 @@
 package com.netcracker.bagachuck.lab;
 
-public class LinkedListVector implements Vector, Cloneable {
+import java.io.*;
+
+public class LinkedListVector implements Vector, Cloneable, Serializable {
 	class Link {
 		public double value;
 		Link next;
@@ -216,27 +218,8 @@ public class LinkedListVector implements Vector, Cloneable {
 		return vectorObject;
 	}
 
-	public static void main(String[] args) {
-		LinkedListVector myList = new LinkedListVector();
+	
 
-		myList.add(0.0);
-		myList.add(1.0);
-		myList.add(2.0);
-		myList.add(3.0);
-		myList.add(4.0);
-		myList.add(5.0);
-		// myList.toString();
-
-		// myList.setElement(0.0, 2);
-		// myList.delete(0);
-		// myList.printList();
-		// myList.printList();
-		System.out.println("Length of the list: " + myList.getSize());
-		System.out.println("List: ");
-		for (int i = 0; i < myList.getSize(); i++) {
-			System.out.print("  " + myList.getElement(i));
-		}
-		
 	}
 
 }

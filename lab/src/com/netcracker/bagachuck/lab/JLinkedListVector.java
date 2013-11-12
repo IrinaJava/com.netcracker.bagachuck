@@ -1,8 +1,9 @@
 package com.netcracker.bagachuck.lab;
 
+import java.io.*;
 import java.util.LinkedList;
 
-public class JLinkedListVector implements Vector, Cloneable {
+public class JLinkedListVector implements Vector, Cloneable, Serializable {
 	private LinkedList<Double> list;
 
 	public JLinkedListVector(int size) {
@@ -128,5 +129,6 @@ public class JLinkedListVector implements Vector, Cloneable {
 
 		return vectorObject;
 	}
+	
 
 }
