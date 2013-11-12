@@ -1,14 +1,15 @@
 package com.netcracker.bagachuck.lab;
 
+import java.io.*;
 import java.util.ArrayList;
 
-public class JArrayListVector implements Vector,Cloneable {
+public class JArrayListVector implements Vector, Cloneable, Serializable {
 	private ArrayList<Double> list;
 
 	public JArrayListVector(int size) {
-		ArrayList<Double> list = new ArrayList<Double>();
+		list = new ArrayList<Double>();
 		for (int i = 0; i < size; i++) {
-			list.add(null);
+			this.list.add(i, null);
 		}
 
 	}
@@ -22,15 +23,25 @@ public class JArrayListVector implements Vector,Cloneable {
 
 	@Override
 	public int getSize() {
-		return list.size();
+		return this.list.size();
 	}
 
 	@Override
 	public void setElement(double val, int index) {
-		list.set(index, val);
+		this.list.set(index, val);
 
 	}
 
+	@Override
+	public double getElement(int index) {
+		return this.list.get(index);
+	}
+	 
+	public void print() {
+	        for (int i = 0; i < this.getSize(); i++) {
+	            System.out.println(this.list.get(i));
+	        }
+	    }
 	@Override
 	public void createMass(double mass[]) {
 		if (this.getSize() == mass.length) {
@@ -46,11 +57,6 @@ public class JArrayListVector implements Vector,Cloneable {
 		for (int i = 0; i < this.getSize(); i++) {
 			list.set(i, list.get(i) * number);
 		}
-	}
-
-	@Override
-	public double getElement(int index) {
-		return list.get(index);
 	}
 
 	@Override
@@ -114,18 +120,37 @@ public class JArrayListVector implements Vector,Cloneable {
 
 		return str.toString();
 	}
-	
-	  public JArrayListVector clone(){
-	        JArrayListVector vectorObject= null;
-	        try {
-	        	vectorObject = (JArrayListVector) super.clone();
-	        	vectorObject.list= (ArrayList<Double>) this.list.clone();
 
-	        } catch (CloneNotSupportedException e) {
-	            e.printStackTrace();
-	        }
+	public JArrayListVector clone() {
+		JArrayListVector vectorObject = null;
+		try {
+			vectorObject = (JArrayListVector) super.clone();
+			vectorObject.list = (ArrayList<Double>) this.list.clone();
 
-	        return vectorObject;
-	    }
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
 
+		return vectorObject;
+	}
+
+	public static void main(String[] args) {
+		JArrayListVector myVector1 = new JArrayListVector(3);
+		myVector1.setElement(0.5, 0);
+		try {
+			FileOutputStream fileStream = new FileOutputStream("MyVector1.ser");
+			ObjectOutputStream os = new ObjectOutputStream(fileStream);
+			os.writeObject(myVector1);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		try {
+			ObjectInputStream is = new ObjectInputStream(new FileInputStream(
+					"MyVector1.ser"));
+			JArrayListVector myVector1Restore = (JArrayListVector) is.readObject();
+			myVector1Restore.print();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
 }

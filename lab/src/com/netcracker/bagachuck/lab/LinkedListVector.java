@@ -1,17 +1,8 @@
 package com.netcracker.bagachuck.lab;
 
-public class LinkedListVector implements Vector, Cloneable {
-	class Link {
-		public double value;
-		Link next;
-		Link prev;
+import java.io.*;
 
-		public Link(double val) {
-			value = val;
-
-		}
-
-	}
+public class LinkedListVector implements Vector, Cloneable,Serializable {
 
 	// head
 	private Link first;
@@ -56,6 +47,14 @@ public class LinkedListVector implements Vector, Cloneable {
 			link = link.next;
 		}
 		return link.value;
+	}
+
+	public void print() {
+		Link current = first;
+		for (int i = 0; i < this.getSize(); i++) {
+			System.out.println(current.value);
+			current = current.next;
+		}
 	}
 
 	public void delete(int index) {
@@ -216,27 +215,42 @@ public class LinkedListVector implements Vector, Cloneable {
 		return vectorObject;
 	}
 
-	public static void main(String[] args) {
-		LinkedListVector myList = new LinkedListVector();
+	class Link implements Serializable {
+		public double value;
+		Link next;
+		Link prev;
 
-		myList.add(0.0);
-		myList.add(1.0);
-		myList.add(2.0);
-		myList.add(3.0);
-		myList.add(4.0);
-		myList.add(5.0);
-		// myList.toString();
-
-		// myList.setElement(0.0, 2);
-		// myList.delete(0);
-		// myList.printList();
-		// myList.printList();
-		System.out.println("Length of the list: " + myList.getSize());
-		System.out.println("List: ");
-		for (int i = 0; i < myList.getSize(); i++) {
-			System.out.print("  " + myList.getElement(i));
+		public Link(double val) {
+			value = val;
+			prev = this;
+			next = this;
 		}
-		
+
 	}
 
-}
+	public static void main(String[] args) {
+		LinkedListVector myList = new LinkedListVector();
+		
+		myList.add(0.1);
+		myList.add(1.1);
+		 myList.print(); 
+		 System.out.println("Длина списка: " + myList.getSize());
+		 try {
+				FileOutputStream fileStream = new FileOutputStream("MyVector3.ser");
+				ObjectOutputStream os = new ObjectOutputStream(fileStream);
+				os.writeObject(myList);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+			try {
+				ObjectInputStream is = new ObjectInputStream(new FileInputStream(
+						"MyVector3.ser"));
+				LinkedListVector  myListRestore = (LinkedListVector) is.readObject();
+				 myListRestore.print();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+	}
+
+

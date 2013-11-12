@@ -1,14 +1,15 @@
 package com.netcracker.bagachuck.lab;
 
+import java.io.*;
 import java.util.LinkedList;
 
-public class JLinkedListVector implements Vector, Cloneable {
+public class JLinkedListVector implements Vector, Cloneable, Serializable {
 	private LinkedList<Double> list;
 
 	public JLinkedListVector(int size) {
-		LinkedList<Double> list = new LinkedList<Double>();
+		list = new LinkedList<Double>();
 		for (int i = 0; i < size; i++) {
-			list.add(null);
+			this.list.add(i,null);
 		}
 
 	}
@@ -16,27 +17,33 @@ public class JLinkedListVector implements Vector, Cloneable {
 	public JLinkedListVector(double... elements) {
 		list = new LinkedList<Double>();
 		for (int i = 0; i < elements.length; i++) {
-			list.add(i, elements[i]);
+			this.list.add(i, elements[i]);
 
 		}
 	}
 
 	@Override
 	public int getSize() {
-		return list.size();
+		return this.list.size();
 	}
 
 	@Override
 	public void setElement(double val, int index) {
-		list.set(index, val);
+		this.list.set(index, val);
 
 	}
 
 	@Override
 	public double getElement(int index) {
 
-		return list.get(index);
+		return this.list.get(index);
 	}
+	
+	 public void print() {
+	        for (int i = 0; i < this.getSize(); i++) {
+	            System.out.println(this.list.get(i));
+	        }
+	    }
 
 	@Override
 	public void createMass(double mass[]) {
@@ -127,6 +134,25 @@ public class JLinkedListVector implements Vector, Cloneable {
 		}
 
 		return vectorObject;
+	}
+	public static void main(String[] args) {
+		JLinkedListVector myVector2 = new JLinkedListVector(4);
+		myVector2.setElement(0.5, 0);
+		try {
+			FileOutputStream fileStream = new FileOutputStream("MyVector2.ser");
+			ObjectOutputStream os = new ObjectOutputStream(fileStream);
+			os.writeObject(myVector2);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		try {
+			ObjectInputStream is = new ObjectInputStream(new FileInputStream(
+					"MyVector2.ser"));
+			JLinkedListVector myVector2Restore = (JLinkedListVector) is.readObject();
+			myVector2Restore.print();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 
 }
