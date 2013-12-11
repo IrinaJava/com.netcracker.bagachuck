@@ -1,0 +1,61 @@
+package org.bagachuck.info;
+
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Enumeration;
+import java.util.Locale;
+
+
+
+public class App1 {
+
+	public static void main(String[] args) {
+		Connection conn = null;
+		Statement stmt = null;
+		// class otve4auwij za podklu4enie k BD
+		try {
+			Class.forName("oracle.jdbc.OracleDriver");
+			Class.forName("com.hxtt.sql.dbf.DBFDriver");
+			Enumeration<Driver> en = DriverManager.getDrivers();
+			while (en.hasMoreElements()) {
+				Driver driver = (Driver) en.nextElement();
+				System.out.println(driver);
+			}
+			/////////////////////////////////////
+			Locale.setDefault(Locale.ENGLISH);
+			////////////////////////////////////
+			conn = DriverManager.getConnection(
+					"jdbc:oracle:thin:@localhost:1521:XE", "system", "system");
+			System.out.println("Connected...");
+			System.out.println(conn.getMetaData().getDatabaseProductVersion());
+			stmt=conn.createStatement();
+			//DDL command
+			stmt.execute("create table q (q number)");
+		}
+	
+		catch (Exception e) {
+			System.out.println("" + e);
+		} finally {
+			try {
+				stmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	}
+
+
+

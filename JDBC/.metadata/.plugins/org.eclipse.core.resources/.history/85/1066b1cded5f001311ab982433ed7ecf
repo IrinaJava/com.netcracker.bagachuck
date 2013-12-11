@@ -1,0 +1,45 @@
+package onpu;
+
+//jdbc_2_con_odbc.java
+import java.io.*; 
+import java.sql.*;
+import oracle.jdbc.driver.*;
+import java.util.*;
+
+class jdbc_2_con_odbc
+{
+public static void main(String args[])  throws IOException
+	{
+		try
+		{
+			// загрузка драйвера типа JDBC-ODBC-мост
+			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver"); 
+			System.out.println("JDBC-Driver sun.jdbc.odbc is OK!");
+			String url = new String(""); // инициализации URL-строки
+			// URL для драйвера типа JDBC-ODBC-мост
+			// Имя DSN(псевдонима или алиаса) = test1
+			url="jdbc:odbc:db_test"; // JDBC-ODBC-мост
+			// установка имени пользователя
+			String userid="system";
+			// установка пароля
+			String userp="system";
+			// открытие соединения
+			Connection con=DriverManager.getConnection(
+					url,userid,userp);
+			System.out.println("Connection with URL=" + url + " is OK!");
+		}
+		catch(java.lang.ClassNotFoundException er)
+		{
+			System.out.print("JDBC-Driver sun.jdbc.odbc is wrong!\n");
+			System.out.println(er.getMessage());
+			er.printStackTrace();
+			System.exit(0);
+		}
+		catch(SQLException er)
+     {
+			System.out.println("Connection is wrong!");
+			System.out.println(er.getMessage());
+		}
+		
+	} 
+}

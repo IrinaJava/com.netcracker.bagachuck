@@ -60,31 +60,47 @@ public class Vectors {
 		return vectorRandom;
 	}
 
-	public void outputVector(Vector v, OutputStream out) {
-		try {
-			DataOutputStream outData = new DataOutputStream(out);
-			outData.writeInt(v.getSize());
-			for (int i = 0; i < v.getSize(); i++) {
-				outData.writeDouble(v.getElement(i));
-			}
-			outData.flush();
-		} catch (IOException e) {
-			System.out.println("Some error occurred!");
+	public static void outputVector(Vector v, OutputStream out) {
+		DataOutputStream dos = new DataOutputStream(out);
 
+		try {
+			dos.writeInt(v.getSize());
+			for (int i = 0; i < v.getSize(); i++) {
+				dos.writeDouble(v.getElement(i));
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
-/////////Err
+	
+	
+	/*
+	 * public void outputVector(Vector v, OutputStream out) { try {
+	 * DataOutputStream outData = new DataOutputStream(out);
+	 * outData.writeInt(v.getSize()); for (int i = 0; i < v.getSize(); i++) {
+	 * outData.writeDouble(v.getElement(i)); } outData.flush(); } catch
+	 * (IOException e) { System.out.println("Some error occurred!");
+	 * 
+	 * } }
+	 */
+
+	// ///////Err
 	static Vector inputVector(InputStream in) {
-		Vector v = null;
+		Vector myVector = new ArrayVector(5);
+		myVector.setElement(0.5, 0);
+		myVector.setElement(1.5, 1);
+		System.out.println(myVector);
 		try {
 			DataInputStream inData = new DataInputStream(in);
-			for (int i = 0; i < v.getSize(); i++) {
-				v.setElement(inData.readDouble(), i);
+			myVector.getSize().readInt();
+			for (int i = 0; i < myVector.getSize(); i++) {
+				myVector.setElement(inData.readDouble(), i);
 			}
 		} catch (IOException e) {
 			System.out.println("Some error occurred!");
 		}
-		return v;
+		return myVector;
 	}
 
 	static void writeVector(Vector v, Writer out) {
@@ -102,9 +118,10 @@ public class Vectors {
 			System.out.println("Some error occurred!");
 		}
 	}
-////////ERrr
+
+	// //////ERrr
 	static Vector readVector(Reader in) {
-		Vector v = null;
+		Vector v = new ArrayVector(5);
 		try {
 			StreamTokenizer ind = new StreamTokenizer(in);
 			ind.nextToken();
@@ -118,4 +135,21 @@ public class Vectors {
 		return v;
 	}
 
+	public static void main(String[] args) {
+		Vector myVector = new ArrayVector(5);
+		myVector.setElement(0.5, 0);
+		myVector.setElement(1.5, 1);
+		System.out.println(myVector);
+
+		/*
+		 * try{ File myFile = new File("MyText.txt"); FileReader file = new
+		 * FileReader(myFile);
+		 * 
+		 * BufferedReader reader = new BufferedReader(fileReader);
+		 * 
+		 * String line = null; while((line=reader.readLine()) !=null){
+		 * System.out.println(line); } reader.close(); }catch(Exception ex){
+		 * ex.printStackTrace(); }
+		 */
+	}
 }
